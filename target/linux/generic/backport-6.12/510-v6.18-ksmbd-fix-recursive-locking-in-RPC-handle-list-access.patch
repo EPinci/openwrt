@@ -53,11 +53,9 @@ Signed-off-by: Steve French <stfrench@microsoft.com>
  fs/smb/server/transport_ipc.c     | 12 ++++++++++++
  3 files changed, 22 insertions(+), 6 deletions(-)
 
-diff --git a/fs/smb/server/mgmt/user_session.c b/fs/smb/server/mgmt/user_session.c
-index 6fa025374f2f3a..1c181ef9992957 100644
 --- a/fs/smb/server/mgmt/user_session.c
 +++ b/fs/smb/server/mgmt/user_session.c
-@@ -147,14 +147,11 @@ void ksmbd_session_rpc_close(struct ksmbd_session *sess, int id)
+@@ -147,14 +147,11 @@ void ksmbd_session_rpc_close(struct ksmb
  int ksmbd_session_rpc_method(struct ksmbd_session *sess, int id)
  {
  	struct ksmbd_session_rpc *entry;
@@ -74,11 +72,9 @@ index 6fa025374f2f3a..1c181ef9992957 100644
  }
  
  void ksmbd_session_destroy(struct ksmbd_session *sess)
-diff --git a/fs/smb/server/smb2pdu.c b/fs/smb/server/smb2pdu.c
-index b731d9b094081c..f901ae18e68adf 100644
 --- a/fs/smb/server/smb2pdu.c
 +++ b/fs/smb/server/smb2pdu.c
-@@ -4626,8 +4626,15 @@ static int smb2_get_info_file_pipe(struct ksmbd_session *sess,
+@@ -4623,8 +4623,15 @@ static int smb2_get_info_file_pipe(struc
  	 * pipe without opening it, checking error condition here
  	 */
  	id = req->VolatileFileId;
@@ -95,11 +91,9 @@ index b731d9b094081c..f901ae18e68adf 100644
  
  	ksmbd_debug(SMB, "FileInfoClass %u, FileId 0x%llx\n",
  		    req->FileInfoClass, req->VolatileFileId);
-diff --git a/fs/smb/server/transport_ipc.c b/fs/smb/server/transport_ipc.c
-index 2aa1b29bea0804..46f87fd1ce1cd8 100644
 --- a/fs/smb/server/transport_ipc.c
 +++ b/fs/smb/server/transport_ipc.c
-@@ -825,6 +825,9 @@ struct ksmbd_rpc_command *ksmbd_rpc_write(struct ksmbd_session *sess, int handle
+@@ -825,6 +825,9 @@ struct ksmbd_rpc_command *ksmbd_rpc_writ
  	if (!msg)
  		return NULL;
  
@@ -109,7 +103,7 @@ index 2aa1b29bea0804..46f87fd1ce1cd8 100644
  	msg->type = KSMBD_EVENT_RPC_REQUEST;
  	req = (struct ksmbd_rpc_command *)msg->payload;
  	req->handle = handle;
-@@ -833,6 +836,7 @@ struct ksmbd_rpc_command *ksmbd_rpc_write(struct ksmbd_session *sess, int handle
+@@ -833,6 +836,7 @@ struct ksmbd_rpc_command *ksmbd_rpc_writ
  	req->flags |= KSMBD_RPC_WRITE_METHOD;
  	req->payload_sz = payload_sz;
  	memcpy(req->payload, payload, payload_sz);
@@ -117,7 +111,7 @@ index 2aa1b29bea0804..46f87fd1ce1cd8 100644
  
  	resp = ipc_msg_send_request(msg, req->handle);
  	ipc_msg_free(msg);
-@@ -849,6 +853,9 @@ struct ksmbd_rpc_command *ksmbd_rpc_read(struct ksmbd_session *sess, int handle)
+@@ -849,6 +853,9 @@ struct ksmbd_rpc_command *ksmbd_rpc_read
  	if (!msg)
  		return NULL;
  
@@ -127,7 +121,7 @@ index 2aa1b29bea0804..46f87fd1ce1cd8 100644
  	msg->type = KSMBD_EVENT_RPC_REQUEST;
  	req = (struct ksmbd_rpc_command *)msg->payload;
  	req->handle = handle;
-@@ -856,6 +863,7 @@ struct ksmbd_rpc_command *ksmbd_rpc_read(struct ksmbd_session *sess, int handle)
+@@ -856,6 +863,7 @@ struct ksmbd_rpc_command *ksmbd_rpc_read
  	req->flags |= rpc_context_flags(sess);
  	req->flags |= KSMBD_RPC_READ_METHOD;
  	req->payload_sz = 0;
@@ -135,7 +129,7 @@ index 2aa1b29bea0804..46f87fd1ce1cd8 100644
  
  	resp = ipc_msg_send_request(msg, req->handle);
  	ipc_msg_free(msg);
-@@ -876,6 +884,9 @@ struct ksmbd_rpc_command *ksmbd_rpc_ioctl(struct ksmbd_session *sess, int handle
+@@ -876,6 +884,9 @@ struct ksmbd_rpc_command *ksmbd_rpc_ioct
  	if (!msg)
  		return NULL;
  
@@ -145,7 +139,7 @@ index 2aa1b29bea0804..46f87fd1ce1cd8 100644
  	msg->type = KSMBD_EVENT_RPC_REQUEST;
  	req = (struct ksmbd_rpc_command *)msg->payload;
  	req->handle = handle;
-@@ -884,6 +895,7 @@ struct ksmbd_rpc_command *ksmbd_rpc_ioctl(struct ksmbd_session *sess, int handle
+@@ -884,6 +895,7 @@ struct ksmbd_rpc_command *ksmbd_rpc_ioct
  	req->flags |= KSMBD_RPC_IOCTL_METHOD;
  	req->payload_sz = payload_sz;
  	memcpy(req->payload, payload, payload_sz);
