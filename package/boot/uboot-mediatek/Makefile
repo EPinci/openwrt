@@ -954,6 +954,42 @@ define U-Boot/mt7988_bananapi_bpi-r4-poe-snand
   DEPENDS:=+trusted-firmware-a-mt7988-spim-nand-ubi-comb
 endef
 
+define U-Boot/mt7988_bananapi_bpi-r4-pro-emmc
+  NAME:=BananaPi BPi-R4-PRO
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=bananapi_bpi-r4-pro
+  UBOOT_CONFIG:=mt7988a_bananapi_bpi-r4-pro-emmc
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=emmc
+  BL2_SOC:=mt7988
+  BL2_DDRTYPE:=comb
+  DEPENDS:=+trusted-firmware-a-mt7988-emmc-comb
+endef
+
+define U-Boot/mt7988_bananapi_bpi-r4-pro-sdmmc
+  NAME:=BananaPi BPi-R4-PRO
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=bananapi_bpi-r4-pro
+  UBOOT_CONFIG:=mt7988a_bananapi_bpi-r4-pro-sdmmc
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=sdmmc
+  BL2_SOC:=mt7988
+  BL2_DDRTYPE:=comb
+  DEPENDS:=+trusted-firmware-a-mt7988-sdmmc-comb
+endef
+
+define U-Boot/mt7988_bananapi_bpi-r4-pro-snand
+  NAME:=BananaPi BPi-R4-PRO
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=bananapi_bpi-r4-pro
+  UBOOT_CONFIG:=mt7988a_bananapi_bpi-r4-pro-snand
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand-ubi
+  BL2_SOC:=mt7988
+  BL2_DDRTYPE:=comb
+  DEPENDS:=+trusted-firmware-a-mt7988-spim-nand-ubi-comb
+endef
+
 define U-Boot/mt7987_rfb-emmc
   NAME:=MT7987 Reference Board
   BUILD_SUBTARGET:=filogic
@@ -1135,6 +1171,9 @@ UBOOT_TARGETS := \
 	mt7988_bananapi_bpi-r4-poe-emmc \
 	mt7988_bananapi_bpi-r4-poe-sdmmc \
 	mt7988_bananapi_bpi-r4-poe-snand \
+	mt7988_bananapi_bpi-r4-pro-emmc \
+	mt7988_bananapi_bpi-r4-pro-sdmmc \
+	mt7988_bananapi_bpi-r4-pro-snand \
 	mt7988_rfb-spim-nand \
 	mt7988_rfb-snand \
 	mt7988_rfb-nor \
